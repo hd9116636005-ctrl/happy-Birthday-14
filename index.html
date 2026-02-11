@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy Birthday Bhavana 🎉</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#f7d9e3;overflow:hidden;}
+
+.page{
+  display:none;
+  height:100vh;width:100%;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+  position:relative;
+}
+.page.active{display:flex;}
+
+.card{
+  background:#fff;
+  padding:30px;
+  border-radius:20px;
+  max-width:380px;
+  width:100%;
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
+  position:relative;
+  z-index:3;
+}
+
+.dark{background:#2b174f;color:white;}
+h1 span{color:#ff4f79;}
+
+button{
+  margin-top:20px;
+  padding:14px 28px;
+  border:none;
+  border-radius:30px;
+  font-size:1rem;
+  background:#ff4f79;
+  color:white;
+  cursor:pointer;
+  position:relative;
+  z-index:5;
+}
+.secondary{background:#7a4cff;}
+
+/* Sparkle */
+.sparkle-word{
+  position:relative;
+  color:#ff4f79;
+  font-weight:600;
+}
+.sparkle-word::before,
+.sparkle-word::after{
+  content:'✨';
+  position:absolute;
+  font-size:.7rem;
+  opacity:0;
+  animation:sparkle 1.5s infinite;
+}
+.sparkle-word::before{top:-8px;left:-12px;}
+.sparkle-word::after{bottom:-8px;right:-12px;animation-delay:.7s;}
+@keyframes sparkle{
+  0%{opacity:0;transform:scale(.5);}
+  50%{opacity:1;transform:scale(1);}
+  100%{opacity:0;transform:scale(.5);}
+}
+
+/* Countdown */
+.countdown{display:flex;justify-content:space-between;margin:20px 0;}
+.time-box{
+  background:#ffe6ee;
+  padding:10px;
+  border-radius:12px;
+  width:22%;
+}
+.time-box h2{color:#ff4f79;font-size:1.5rem;}
+.time-box small{font-size:.7rem;}
+
+/* NO button */
+#noBtn{position:absolute;transition:.2s ease;}
+
+/* Reels */
+.reel-bg{
+  position:absolute;inset:0;
+  z-index:1;pointer-events:none;
+}
+.reel-wrap{
+  position:absolute;left:50%;
+  transform:translateX(-50%);
+  width:100%;overflow:hidden;
+}
+.reel-wrap.top{top:22%;}
+.reel-wrap.bottom{bottom:22%;}
+.reel{
+  display:flex;gap:14px;
+  width:max-content;
+  animation:reelMove 35s linear infinite;
+}
+.reel.reverse{animation-direction:reverse;}
+.reel img{
+  width:120px;height:160px;
+  object-fit:cover;padding:6px;
+  background:#111;border-radius:6px;
+  filter:sepia(.35) contrast(1.15) brightness(.95);
+}
+@keyframes reelMove{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+
+/* Envelope */
+.page8-container{
+  z-index:3;position:relative;
+  display:flex;flex-direction:column;
+  align-items:center;
+}
+.envelope{
+  width:320px;height:220px;
+  background:#c62828;
+  border-radius:12px;
+  position:relative;
+  overflow:hidden;cursor:pointer;
+}
+.envelope::before{
+  content:'';position:absolute;
+  width:100%;height:100%;
+  background:#b71c1c;
+  transform:rotate(45deg);
+  top:-50%;
+}
+.letter{
+  position:absolute;
+  background:white;
+  width:92%;height:85%;
+  left:4%;bottom:-110%;
+  padding:15px;border-radius:10px;
+  transition:.6s;
+  font-size:.9rem;
+  overflow-y:auto;color:#000;
+}
+.envelope.open .letter{bottom:8%;}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active">
+  <div class="card">
+    <h1>Counting down to <span>Bhavana</span>'s<br>special day 🎂</h1>
+    <div class="countdown">
+      <div class="time-box"><h2 id="days">0</h2><small>DAYS</small></div>
+      <div class="time-box"><h2 id="hours">0</h2><small>HOURS</small></div>
+      <div class="time-box"><h2 id="minutes">0</h2><small>MIN</small></div>
+      <div class="time-box"><h2 id="seconds">0</h2><small>SEC</small></div>
+    </div>
+    <button onclick="nextPage()">Let’s Celebrate 🎉</button>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page"><div class="card"><h1>Happy Birthday Bhavana 🎉</h1><button onclick="nextPage()">Ready ✨</button></div></div>
+
+<!-- PAGE 3 -->
+<div class="page"><div class="card"><h2>It’s Your Special Day ✨</h2><button onclick="nextPage()">Next</button></div></div>
+
+<!-- PAGE 4 -->
+<div class="page">
+  <div class="card">
+    <h2>Do you wanna see what I made?? ✨</h2>
+    <button onclick="nextPage()">Yes! 💖</button>
+    <button class="secondary" id="noBtn">No 😜</button>
+  </div>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page">
+  <div class="card">
+    <h2>Have a look at it <span class="sparkle-word">Sundari</span> ✨</h2>
+    <button onclick="nextPage()">Let’s Go 🎉</button>
+  </div>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page"><div class="card"><h2>Before we begin… ✨</h2><button onclick="nextPage()">Turn On Lights ✨</button></div></div>
+
+<!-- PAGE 7 -->
+<div class="page dark">
+  <div class="reel-bg">
+    <div class="reel-wrap top"><div class="reel" id="r7a"></div></div>
+    <div class="reel-wrap bottom"><div class="reel reverse" id="r7b"></div></div>
+  </div>
+  <div class="card dark">
+    <h2>Happy Birthday 🎂</h2>
+    <button onclick="nextPage()">I have a message 💌</button>
+  </div>
+</div>
+
+<!-- PAGE 8 -->
+<div class="page">
+  <div class="reel-bg">
+    <div class="reel-wrap top"><div class="reel" id="r8a"></div></div>
+    <div class="reel-wrap bottom"><div class="reel reverse" id="r8b"></div></div>
+  </div>
+  <div class="page8-container">
+    <h2>A Message From My Heart ❤️</h2><br>
+    <div class="envelope" onclick="this.classList.add('open')">
+      <div class="letter">
+        <strong>Dear Bhavana 💖</strong><br><br>
+        You are strong, beautiful, kind and truly special.  
+        Never settle for less, because you deserve the world 🌍✨  
+        <br><br>
+        May this year bring you smiles, love and endless happiness.  
+        May all your dreams slowly turn into reality 🌸  
+        <br><br>
+        Stay the wonderful soul you are 💕  
+        <br><br>
+        — With love 💖
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let page=0;
+const pages=document.querySelectorAll('.page');
+function nextPage(){
+  pages[page].classList.remove('active');
+  page++;
+  pages[page].classList.add('active');
+}
+
+/* Countdown */
+function updateCountdown(){
+  const now=new Date();
+  let year=now.getFullYear();
+  let bday=new Date(year,2,14);
+  if(now>bday) bday=new Date(year+1,2,14);
+  const d=bday-now;
+  days.innerText=Math.floor(d/86400000);
+  hours.innerText=Math.floor(d/3600000)%24;
+  minutes.innerText=Math.floor(d/60000)%60;
+  seconds.innerText=Math.floor(d/1000)%60;
+}
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+/* NO button */
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("mouseenter",()=>{
+  const c=noBtn.parentElement;
+  noBtn.style.left=Math.random()*(c.clientWidth-noBtn.offsetWidth)+"px";
+  noBtn.style.top=Math.random()*(c.clientHeight-noBtn.offsetHeight)+"px";
+});
+
+/* LOAD PHOTOS FROM photos/ FOLDER */
+function loadReels(ids){
+  let n=1;
+  ids.forEach(id=>{
+    const r=document.getElementById(id);
+    let f=document.createDocumentFragment();
+    for(let i=0;i<25;i++){
+      if(n>91)n=1;
+      let img=document.createElement("img");
+      img.src=`photos/img${n}.jpg`;   // ✅ CORRECT PATH
+      f.appendChild(img);n++;
+    }
+    r.appendChild(f.cloneNode(true));
+    r.appendChild(f);
+  });
+}
+loadReels(["r7a","r7b","r8a","r8b"]);
+</script>
+
+</body>
+</html>
